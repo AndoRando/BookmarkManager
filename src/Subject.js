@@ -9,7 +9,8 @@ export default class Subject extends Component {
 
     this.state = {
       isClicked: false,
-      newResourceTitle: '',
+      title: '',
+      url: '',
     }
   }
 
@@ -20,7 +21,7 @@ export default class Subject extends Component {
   }
 
   handleTyping(e) {
-    this.setState({newResourceTitle: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   render() {
@@ -41,8 +42,11 @@ export default class Subject extends Component {
             })
           }
         </ul>
-
-        <input onChange={this.handleTyping} value={this.state.newResourceTitle}/>
+        <label htmlFor="title">Title</label>
+        <input name="title" id="title" onChange={this.handleTyping} value={this.state.title}/>
+        <br/>
+        <label htmlFor="url">URL</label>
+        <input name="url" id="url" onChange={this.handleTyping} value={this.state.url}/>
       </div>
     )
   }
