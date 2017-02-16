@@ -5,6 +5,8 @@ class App extends Component {
   constructor() {
     super();
 
+    this.addNewResource = this.addNewResource.bind(this);
+
     this.state = {resources: [
 
       {
@@ -52,17 +54,22 @@ class App extends Component {
           }
         ]
       }
-
     ]}
+  }
+
+  addNewResource(subject, resource) {
+    const tempState = this.state;
+    tempState.resources[subject].resources.push(resource);
+    this.setState(tempState)
   }
 
   render() {
     return (
       <div>
         {
-          this.state.resources.map((resource) => {
+          this.state.resources.map((resource, index) => {
             return(
-              <Subject items={resource}/>
+              <Subject index={index} addResource={this.addNewResource} items={resource}/>
             )
           })
         }

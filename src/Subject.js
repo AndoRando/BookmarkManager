@@ -6,12 +6,22 @@ export default class Subject extends Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      isClicked: false,
+      isClicked: true,
       title: '',
       url: '',
     }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const newResource = {
+      title: this.state.title,
+      url: this.state.url,
+    }
+    this.props.addResource(this.props.index, newResource);
   }
 
   handleClick() {
@@ -42,11 +52,15 @@ export default class Subject extends Component {
             })
           }
         </ul>
-        <label htmlFor="title">Title</label>
-        <input name="title" id="title" onChange={this.handleTyping} value={this.state.title}/>
-        <br/>
-        <label htmlFor="url">URL</label>
-        <input name="url" id="url" onChange={this.handleTyping} value={this.state.url}/>
+        <form>
+          <label htmlFor="title">Title</label>
+          <input name="title" id="title" onChange={this.handleTyping} value={this.state.title}/>
+          <br/>
+          <label htmlFor="url">URL</label>
+          <input name="url" id="url" onChange={this.handleTyping} value={this.state.url}/>
+          <br/>
+          <button onClick={this.handleSubmit}>Add Resource</button>
+        </form>
       </div>
     )
   }
