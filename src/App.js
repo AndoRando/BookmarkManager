@@ -6,6 +6,7 @@ class App extends Component {
     super();
 
     this.addNewResource = this.addNewResource.bind(this);
+    this.addNewSubject = this.addNewSubject.bind(this);
 
     this.state = {resources: [
 
@@ -59,8 +60,12 @@ class App extends Component {
 
   addNewResource(subject, resource) {
     const tempState = this.state;
-    tempState.resources[subject].resources.push(resource);
+    tempState.resources[0].resources.push(resource);
     this.setState(tempState)
+  }
+
+  addNewSubject() {
+    console.log("Hey it's me!")
   }
 
   render() {
@@ -73,6 +78,9 @@ class App extends Component {
             )
           })
         }
+        <div>
+          <button onClick={this.addNewSubject}>New Subject</button>
+        </div>
       </div>
     );
   }
