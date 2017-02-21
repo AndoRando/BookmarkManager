@@ -34,7 +34,7 @@ export default class Subject extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  render() {
+  render() {    
     return(
       <div>
         <h2 onClick={this.handleClick}>{this.props.items.subject}</h2>
